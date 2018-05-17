@@ -1,0 +1,36 @@
+<div>
+  <div class="padding-top" >
+    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addMeetingModal">
+      Add meeting info
+    </button>
+  </div>
+  <div class="padding-top">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Name</th>
+          <th scope="col">Arrival Time</th>
+          <th scope="col">On Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let meeting of meetings">
+          <td>{{meeting.date | date:'dd.MM.yyyy'}}</td>
+          <td>{{meeting.workerFirstName}} {{meeting.workerLastName}}</td>
+          <td>{{meeting.arrivaltime}}</td>
+          <td>{{meeting.arrivedontime}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add Meeting Modal -->
+  <div class="modal fade" id="addMeetingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <app-meeting-info></app-meeting-info>
+      </div>
+    </div>
+  </div>

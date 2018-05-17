@@ -1,0 +1,32 @@
+<form #meetingInfoForm="ngForm" (ngSubmit)="onAddMeeting(meetingInfoForm.value)" novalidate>
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Add meeting info</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label >Worker</label>
+          <select class="form-control" name="worker" ngModel id="exampleFormControlSelect1">
+            <option *ngFor="let worker of workers">{{worker.firstname}} {{worker.lastname}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label >Meeting date</label>
+          <input type="date" max="3000-12-31" 
+                  min="2000-01-01" ngModel name="date" class="form-control">
+        </div>
+        <div class="form-group">
+            <label >Arrival time</label>
+            <input type="time" value="13:30" class="form-control" name="arrivaltime" ngModel>
+          </div>
+        <div class="custom-control custom-checkbox mr-sm-2">
+            <input type="checkbox" class="custom-control-input" id="customControlAutosizing" name="arrivedontime" ngModel>
+            <label class="custom-control-label" for="customControlAutosizing">Arrived on time</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" onclick="$('.modal').modal('hide')">Save</button>
+    </div>
+  </form>

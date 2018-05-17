@@ -1,0 +1,78 @@
+
+
+<div class="padding-top" >
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Workers</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let worker of workers"
+        [class.selected]="worker === selectedWorker" (click)="onSelect(worker)">
+          <td>{{worker.firstname}}</td>
+          <td>{{worker.lastname}}</td>
+          <td>
+              <button type="button" class="btn btn-secondary" (click)="deleteWorker(worker.id)">Delete</button>
+          </td>
+          <td>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editWorkerModal">
+                  Edit
+                </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<!-- Button trigger create worker modal -->
+<div class="padding-top" >
+  <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#createWorkerModal">
+    Add new
+  </button>
+</div>
+  
+<!-- Edit Worker Modal -->
+<div *ngIf="selectedWorker">
+  <div class="modal fade" id="editWorkerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <app-edit-worker [worker]="selectedWorker"></app-edit-worker>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create Worker Modal -->
+<div class="modal fade" id="createWorkerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form (ngSubmit)="onAddNew()">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create worker</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Firstname</label>
+            <input type="text" class="form-control" id="firstname" required
+            [(ngModel)]="newWorker.firstname" name="firstname" placeholder="firstname">
+          </div>
+          <div class="form-group">
+            <label>Lastname</label>
+            <input type="text" class="form-control" id="lastname" required
+            [(ngModel)]="newWorker.lastname" name="lastname" placeholder="lastname">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" onclick="$('.modal').modal('hide')">Add new</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
